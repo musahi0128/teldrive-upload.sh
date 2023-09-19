@@ -1,0 +1,37 @@
+Hi, I want you to code for me.
+I need a bash script to upload a file using curl to a locally running telegram-bot-api instance and take the responses to insert information into a postgresql database.
+The first command-line argument will be the path for the file to be uploaded and it will be mapped to FILE_PATH variable.
+This is how the curl upload command will be.
+`curl -X POST -H "Content-Type:multipart/form-data" -F "CHAT_ID=$CHAT_ID" -F "document=$FILE_PATH" "$TG_API_SERVER/bot$TG_BOT_TOKEN/sendDocument"`
+Please put `##########` as `CHAT_ID` value
+Please put `http://localhost:8081` as TG_API_SERVER value
+Please put `##############################################` as `TG_BOT_TOKEN` value
+When uploading a file, get the message id from server response and store it in json blob format with `id` as the object Identifier-Index and message id as the value.
+If the file size is more than MAX_PART_SIZE, split the file according to MAX_PART_SIZE into temporary split file under a temporary directory, upload those files one by one, return a collection of message id in json blob format with `id` as the object Identifier-Index and message id as the value once done, then delete all the temporary files.
+Once the file is fully uploaded and the script receive the responses, insert information into a postgresql table on database `DB_NAME` running on host `DB_HOST` and port `DB_PORT` with username `DB_USER` and password `DB_PASSWORD`. Use `DB_TABLE` variable to store the database table name.
+The information is as follow:
+id -> DEFAULT
+name -> uploaded file name
+type -> "file"
+mime_type -> refer to following value to be used. Use "application/octet-stream" if the extension is not in the list.
+.gz = application/gzip
+.pdf = application/pdf
+.zip = application/zip
+.mp3 = audio/mpeg
+.sub = image/vnd.dvb.subtitle
+.txt, .log, .env, .conf, .srt, .ass, vtt = text/plain
+.mp4 = video/mp4
+.mkv = video/webm
+path -> "/"
+size -> size of the uploaded file
+starred -> "f"
+depth -> 0
+user_id -> use USER_ID variable
+parent_id -> use PARENT_ID variable
+status -> "active"
+channel_id -> use CHAT_ID variable
+parts -> collection of the message id responses stored in json blob.
+created_at -> DEFAULT
+updated_at -> DEFAULT
+Make every process as verbose as it can get and redirect all the stdout and stderr to a file in variable `LOG_FILE`.
+Please make a complete script. Thanks!
