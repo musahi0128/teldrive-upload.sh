@@ -21,7 +21,7 @@ sudo apt-get install postgresql-client parallel
 ```
 TG_API_SERVER="http://localhost:8081"
 TG_BOT_TOKEN="${2:-xxx:abcd}" # xxx:abcd being your bot token
-TG_CHAT_ID="-1001910318059" # see notes
+TG_CHAT_ID="1910318059" # see notes
 MAX_PART_SIZE=2097152000 # 2GB in bytes
 DB_CONNECTION_STRING="postgres://username:password@host:port/database" # use the same as Teldrive
 TELDRIVE_USER_ID="12345" # see notes
