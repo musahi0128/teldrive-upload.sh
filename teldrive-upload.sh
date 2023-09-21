@@ -2,10 +2,10 @@
 
 # Set variables
 TG_API_SERVER="http://localhost:8081"
-TG_BOT_TOKEN="${2:-##########:###################################}"
+TG_BOT_TOKEN="${2:-##############################################}"
 TG_CHAT_ID="##########"
 MAX_PART_SIZE=2097152000 # 2GB in bytes
-DB_CONNECTION_STRING="postgres://##########:############@#################################################/######"
+DB_CONNECTION_STRING="postgres://################################################################################"
 TELDRIVE_USER_ID="##########"
 TELDRIVE_PARENT_ID="################"
 LOG_FILE="upload.sh.log"
