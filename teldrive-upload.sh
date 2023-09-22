@@ -3,7 +3,7 @@
 # Set variables
 TG_API_SERVER="http://localhost:8081"
 TG_BOT_TOKEN="${2:-##############################################}"
-TG_CHAT_ID="##########"
+TG_CHAT_ID="##############"
 MAX_PART_SIZE=2097152000 # 2GB in bytes
 DB_CONNECTION_STRING="postgres://################################################################################"
 TELDRIVE_USER_ID="##########"
@@ -12,6 +12,7 @@ LOG_FILE="upload.sh.log"
 
 # Constants
 FILE_PATH="$1"
+TELDRIVE_CHAT_ID=$(echo $TG_CHAT_ID | sed 's/-100//g')
 RESPONSE_FILE=$(mktemp)
 UPLOAD_UID=$(cat /proc/sys/kernel/random/uuid | cut -d- -f5)
 
@@ -39,7 +40,7 @@ insert_into_db() {
   
   psql "$DB_CONNECTION_STRING" <<EOF
   INSERT INTO teldrive.files (name, type, mime_type, size, starred, depth, user_id, parent_id, status, channel_id, parts, created_at, updated_at)
-  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', $FILE_SIZE, 'f', 0, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TG_CHAT_ID', '$PARTS', NOW(), NOW());
+  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', $FILE_SIZE, 'f', 0, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TELDRIVE_CHAT_ID', '$PARTS', NOW(), NOW());
 EOF
 }
 
