@@ -21,16 +21,17 @@ sudo apt-get install postgresql-client parallel
 ```
 TG_API_SERVER="http://localhost:8081"
 TG_BOT_TOKEN="${2:-xxx:abcd}" # xxx:abcd being your bot token
-TG_CHAT_ID="1910318059" # see notes
+TG_CHAT_ID="-1001234" # see notes
 MAX_PART_SIZE=2097152000 # 2GB in bytes
 DB_CONNECTION_STRING="postgres://username:password@host:port/database" # use the same as Teldrive
 TELDRIVE_USER_ID="12345" # see notes
 TELDRIVE_PARENT_ID="1a2b3c4d" # see notes
 LOG_FILE="upload.sh.log"
 ```
-Note: run following SQL statement on your Teldrive database to get `TG_CHAT_ID` (channel_id), `TELDRIVE_USER_ID` (user_id) and `TELDRIVE_PARENT_ID` (parent_id). This will help you upload to the root directory
+Note: run following SQL statement on your Teldrive database to get `TG_CHAT_ID` (channel_id), `TELDRIVE_USER_ID` (user_id) and `TELDRIVE_PARENT_ID` (parent_id).
+This will help you get the values needed to upload to the root directory. Make sure you have at least one file in the root directory. 
 ```
-SELECT distinct channel_id, user_id, parent_id FROM files WHERE TYPE = 'file' and parent_id = (SELECT id FROM files WHERE parent_id = 'root')
+SELECT distinct concat(-100, channel_id), user_id, parent_id FROM files WHERE TYPE = 'file' and parent_id = (SELECT id FROM files WHERE parent_id = 'root')
 ```
 
 Usage
