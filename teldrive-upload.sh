@@ -39,8 +39,8 @@ insert_into_db() {
   local FILE_SIZE="$3"
   
   psql "$DB_CONNECTION_STRING" <<EOF
-  INSERT INTO teldrive.files (name, type, mime_type, size, starred, depth, user_id, parent_id, status, channel_id, parts, created_at, updated_at)
-  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', $FILE_SIZE, 'f', 0, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TELDRIVE_CHAT_ID', '$PARTS', NOW(), NOW());
+  INSERT INTO teldrive.files (name, type, mime_type, path, size, starred, depth, user_id, parent_id, status, channel_id, parts, created_at, updated_at)
+  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', NULL, $FILE_SIZE, 'f', NULL, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TELDRIVE_CHAT_ID', '$PARTS', NOW(), NOW());
 EOF
 }
 
