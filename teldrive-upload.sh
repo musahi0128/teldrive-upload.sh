@@ -40,7 +40,7 @@ insert_into_db() {
   
   psql "$DB_CONNECTION_STRING" <<EOF
   INSERT INTO teldrive.files (name, type, mime_type, path, size, starred, depth, user_id, parent_id, status, channel_id, parts, created_at, updated_at)
-  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', NULL, $FILE_SIZE, 'f', NULL, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TELDRIVE_CHAT_ID', '$PARTS', NOW(), NOW());
+  VALUES ('$FILE_NAME', 'file', '$MIME_TYPE', NULL, $FILE_SIZE, 'f', NULL, '$TELDRIVE_USER_ID', '$TELDRIVE_PARENT_ID', 'active', '$TELDRIVE_CHAT_ID', '$PARTS', DEFAULT, DEFAULT);
 EOF
 }
 
