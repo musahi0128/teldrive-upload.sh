@@ -4,6 +4,10 @@ An alternative to [Teldrive Upload](https://github.com/divyam234/teldrive-upload
 
 This script upload files via api call to a locally running `telegram-bot-api` so it should upload faster than uploading directly to telegram api server.
 
+## Archival notice
+
+This code is no longer works with updated version of teldrive
+
 Prerequisite
 ---
 1. Run `telegram-bot-api` locally
